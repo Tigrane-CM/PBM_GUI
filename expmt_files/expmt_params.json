@@ -1,0 +1,9 @@
+{
+    "experiment config": {
+        "folderpath": "C:\\PBM\\Experiment_files",
+        "on duration (min)": 0.1,
+        "repetition time (min)": 0.1,
+        "num. illums": 3.0,
+        "Laser irradiance (INDICATIVE!, in mW/cm\u00b2)": 10.0
+    }
+}

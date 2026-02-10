@@ -1,0 +1,3 @@
+#!/bin/bash
+cd ~/pbm/PBM_GUI_high
+python3 pbm_gui.py
