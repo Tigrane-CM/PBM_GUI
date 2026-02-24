@@ -91,6 +91,8 @@ class PowerCalc(QWidget):
         self.setLayout(layout)
 
     def ok(self):
+        self.distance_read.var.clearFocus()
+        self.laser_power.var.clearFocus()
         values = (self.distance_read.getValue(), self.laser_power.getValue(), self.irradiance.getValue())
         self.irradiance_emit.emit(values)
         self.close()

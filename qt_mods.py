@@ -138,9 +138,9 @@ class VarLine(QHBoxLayout):
     def setMaximum(self, new_max, unit=None):
         if unit is not None:
             self.change_units(unit)
-            self.var.setMinimum(new_max)
+            self.var.setMaximum(new_max)
         else:
-            self.var.setMinimum(new_max/self.units[self.unit])
+            self.var.setMaximum(new_max/self.units[self.unit])
         # self.adapt_unit_inform_only()
 
     def setRange(self, new_min, new_max, unit=None):
