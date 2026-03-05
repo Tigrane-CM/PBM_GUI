@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ba49d1fc-d5ab-4b90-8a88-b9c4876db0ef" name="Changes" comment="corrected a bad behavior: you could change laser irradiance compute parameters and press enter, the window would close but the parameters would not be taken into account">
+    <list default="true" id="ba49d1fc-d5ab-4b90-8a88-b9c4876db0ef" name="Changes" comment="adding irradiance_measurement to the git">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/power_calc.py" beforeDir="false" afterPath="$PROJECT_DIR$/power_calc.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,11 +85,31 @@
       <option name="project" value="LOCAL" />
       <updated>1771948608060</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="adding irradiance_measurement to the git">
+      <option name="closed" value="true" />
+      <created>1772713123954</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1772713123954</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="corrected a bad behavior: you could change laser irradiance compute parameters and press enter, the window would close but the parameters would not be taken into account" />
-    <option name="LAST_COMMIT_MESSAGE" value="corrected a bad behavior: you could change laser irradiance compute parameters and press enter, the window would close but the parameters would not be taken into account" />
+    <MESSAGE value="adding irradiance_measurement to the git" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding irradiance_measurement to the git" />
   </component>
 </project>
