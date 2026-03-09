@@ -102,7 +102,7 @@ class ExpmtGraph(QWidget):
         self.region.setRegion((0,time_elapsed))
 
     @pyqtSlot(tuple)
-    def experiment_started(self, times):
+    def experiment_started(self, times: tuple):
         start_time, end_time = times
         self.time_label.setText('started at '+ start_time.strftime("%H:%M:%S") + ' on '+start_time.strftime("%d/%m/%Y")
                                 +', end at ' + end_time.strftime("%H:%M:%S") + ' on ' + end_time.strftime("%d/%m/%Y"))

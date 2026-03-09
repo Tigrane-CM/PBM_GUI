@@ -1,7 +1,7 @@
 import numpy as np
 from PyQt5.QtCore import pyqtSignal, QLocale, Qt
 from PyQt5.QtGui import QKeySequence
-from PyQt5.QtWidgets import QVBoxLayout, QWidget, QPushButton, QHBoxLayout, QShortcut
+from PyQt5.QtWidgets import QVBoxLayout, QWidget, QPushButton, QHBoxLayout, QShortcut, QComboBox
 
 from qt_mods import VarLine
 from sys import platform
@@ -24,18 +24,24 @@ def find_nearest_index(array, value):
 class PowerCalc(QWidget):
     irradiance_emit = pyqtSignal(tuple)
 
-    def __init__(self, distance=None, laser_power=None):
+    def __init__(self, distance=None, laser_power=None, laser_source=None):
         super().__init__()
         self.setLocale(QLocale('C'))
         self.setWindowTitle("Irradiance Calculation")
 
+        self.laser_list = QComboBox()
+        self.laser_list.addItems(["670 nm 2W (Tours)", "670 nm 5W (Grenoble)", "808 nm 2W (Tours)", "808 nm 5W (Grenoble)"])
+        # self.laser_list.addItems(["670 nm 2W (Tours)", "808 nm 2W (Tours)"])
+        # self.laser_list.addItems(["670 nm 5W (Grenoble)", "808 nm 5W (Grenoble)"])
+        self.laser_list.currentTextChanged.connect(self.choose_laser_source)
+
         # distances = np.load(default_folder + '/13octobre_distances_lues.npy') # tours
         # powers = np.load(default_folder + '/13octobre_puissances_laser_x20mW.npy') # tours
         # self.data = np.load(default_folder + '/13octobre_interpolees.npy').transpose() # tours
-        self.distances = np.load(default_folder + '/20octobre_distances_lues.npy') # grenoble
-        self.powers = np.load(default_folder + '/20octobre_puissances_laser.npy') # grenoble
-        self.data = np.load(default_folder + '/20octobre_interpolees.npy').transpose() # grenoble
-        print(self.distances.shape, self.powers.dtype, self.data.shape)
+        # self.distances = np.load(default_folder + '/20octobre_distances_lues.npy') # grenoble
+        # self.powers = np.load(default_folder + '/20octobre_puissances_laser.npy') # grenoble
+        # self.data = np.load(default_folder + '/20octobre_interpolees.npy').transpose() # grenoble
+        # print(self.distances.shape, self.powers.dtype, self.data.shape)
 
         self.distance_read = VarLine('Distance (read)', callback=None, units={'cm':1}, decimals=1, wide=True, unit_width=50, right_align=False)
         self.distance_read.var.setRange(0,14.6)
@@ -44,7 +50,7 @@ class PowerCalc(QWidget):
         else:
             self.distance_read.var.setValue(0.)
 
-        self.laser_power = VarLine('Laser power', None, tracked=True, units={'W':1}, decimals=1, wide=True, unit_width=50, right_align=False)
+        self.laser_power = VarLine('Laser power', None, tracked=True, units={'W':1, 'x20 mW':1}, decimals=1, wide=True, unit_width=50, right_align=False)
         self.laser_power.var.setRange(0,5.1)
         if laser_power is not None:
             self.laser_power.var.setValue(laser_power)
@@ -55,19 +61,49 @@ class PowerCalc(QWidget):
         self.distance_read.var.valueChanged.connect(self.update)
         self.laser_power.var.valueChanged.connect(self.update)
 
+        try:
+            self.laser_list.setCurrentText(laser_source)
+        except:
+            self.laser_list.setCurrentText("808 nm 5W (Grenoble)")
+        self.choose_laser_source(self.laser_list.currentText())
+
         self.update()
         self.init_ui()
 
     def update(self, *args):
         dist_index = find_nearest_index(self.distances, self.distance_read.getValue())
         power_index = find_nearest_index(self.powers, self.laser_power.getValue())
-        irradiance = self.data[dist_index, power_index]*1.025
+        irradiance = self.data[dist_index, power_index]*1.025 # +2.5% to correct for the thickness of the adapter for the Pmeter probe.
         self.distance_read.setValue(self.distances[dist_index])
         self.laser_power.setValue(self.powers[power_index])
         self.irradiance.setValue(irradiance)
 
+    def choose_laser_source(self, new_laser_source):
+        # print(new_laser_source)
+        match new_laser_source:
+            case "670 nm 5W (Grenoble)":
+                pass
+            case "808 nm 5W (Grenoble)":
+                self.distances = np.load(default_folder + '/20octobre_distances_lues.npy')  # grenoble 808
+                self.powers = np.load(default_folder + '/20octobre_puissances_laser.npy')  # grenoble 808
+                self.data = np.load(default_folder + '/20octobre_interpolees.npy').transpose()  # grenoble 808
+                self.laser_power.change_units("W")
+                self.laser_power.var.setDecimals(1)
+            case "670 nm 2W (Tours)":
+                pass
+            case "808 nm 2W (Tours)":
+                self.distances = np.load(default_folder + '/05decembre_distances_lues.npy') # tours 808
+                self.powers = np.load(default_folder + '/05decembre_puissances_laser_x20mW.npy') # tours 808
+                self.data = np.load(default_folder + '/05decembre_interpolees.npy').transpose() # tours 808
+                self.laser_power.change_units("x20 mW")
+                self.laser_power.var.setDecimals(0)
+        self.laser_power.var.setRange(self.powers.min(), self.powers.max())
+        self.distance_read.var.setRange(self.distances.min(), self.distances.max())
+        self.update()
+
     def init_ui(self):
         layout = QVBoxLayout()
+        layout.addWidget(self.laser_list)
         layout.addLayout(self.distance_read)
         layout.addLayout(self.laser_power)
         layout.addLayout(self.irradiance)

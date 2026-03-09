@@ -345,408 +345,408 @@ class ExpmtThread(QThread):
         print(f'illumination n. {idx+1} ended')
 
 
-class ExpmtSetup_embedded(QWidget):
-    params_changed = pyqtSignal(dict)
-    params_for_graph = pyqtSignal(dict)
-    go_time = pyqtSignal()
+# class ExpmtSetup_embedded(QWidget):
+#     params_changed = pyqtSignal(dict)
+#     params_for_graph = pyqtSignal(dict)
+#     go_time = pyqtSignal()
+#
+#     def go(self):
+#         params = self.save_params(file=True)
+#         self.params_changed.emit(params)
+#         self.params_for_graph.emit(params)
+#         self.go_time.emit()
+#
+#     def cancel(self):
+#         params = self.save_params(file=False)
+#         self.params_changed.emit(params)
+#         self.params_for_graph.emit(params)
+#         self.close()
+#
+#     def __init__(self, parent_app, instr_list, params=None, first_setup=False, expmt_graph=None):
+#         super().__init__()
+#         self.parent_app = parent_app
+#         controls = extract_controls(parent_app, instr_list)
+#         if expmt_graph is not None:
+#             self.params_for_graph.connect(expmt_graph.update_data)
+#         self.first_setup=first_setup
+#         try:
+#             self.laser_control = controls['laser']
+#         except:
+#             print('missing laser controller')
+#
+#         self.setLocale(QLocale('C'))
+#
+#         """ timing parameters """
+#         self.folderpath = default_folder
+#         self.btn_select_dir = QPushButton('Select saving directory')
+#         self.btn_select_dir.clicked.connect(self.select_dir)
+#         self.btn_select_dir.setFixedWidth(80)
+#
+#         self.on_duration = VarLine("Duration of each illumination", None, display_decimals = 1, tracked=True, wide=True, right_align=False, units=time_units, name='on duration')
+#         self.repetition_time = VarLine("Delay between illuminations", None, display_decimals = 1, tracked=True, wide=True, right_align=False, units=time_units, name='rep time')
+#         self.num_reps = VarLine("Number of illuminations in session", None, decimals=0, tracked=True, wide=True, right_align=False, name='num reps')
+#
+#         self.on_duration.var.setRange(0., 1e18)
+#         self.repetition_time.var.setRange(0., 1e18)
+#         self.num_reps.var.setRange(0, 100000)
+#         self.on_duration.var.valueChanged.connect(self.update_calc)
+#         self.repetition_time.var.valueChanged.connect(self.update_calc)
+#         self.num_reps.var.valueChanged.connect(self.update_calc)
+#
+#         self.distance_read = 0.
+#         self.laser_power = 20
+#
+#         self.irradiance = VarLine("Irradiance", None, decimals = 1, tracked=True, wide=True, right_align=False, units={"mW/cm²":1}, unit_width=50, name='irradiance', inform_only=True)
+#         self.irradiance.var.setRange(0, 100)
+#         self.irradiance.var.valueChanged.connect(self.update_calc)
+#         self.irradiance.setToolTip("Indicate laser irradiance here, from YOUR knowledge of it.\nUseful for logging experiments, but WILL NOT change the laser power by itself.")
+#
+#         self.irr_calc_btn = QPushButton('Compute')
+#         self.irr_calc_btn.clicked.connect(self.irr_calc)
+#
+#         self.illum_duration = VarLine("Total duration of illumination", None, display_decimals = 1, wide=True, inform_only=True, right_align=False, units=time_units, name='illum duration')
+#         self.total_duration = VarLine("Total duration of session", None, display_decimals = 1, wide=True, inform_only=True, right_align=False, units=time_units, name='tot duration')
+#         self.total_energy = VarLine("Total energy delivered", None, display_decimals=2,  wide=True, inform_only=True, right_align=False, units={'J/cm²':1}, unit_width=38, name='tot energy')
+#         self.total_energy.var.setRange(0,1e9)
+#         self.illum_duration.var.setRange(0, 1e18)
+#         self.total_duration.var.setRange(0, 1e18)
+#
+#         self.init_ui()
+#         self.load_params(params)
+#
+#     def update_calc(self):
+#         self.repetition_time.setMinimum(self.on_duration.getValue())
+#         self.illum_duration.setValue(self.on_duration.getValue()*self.num_reps.getValue())
+#         self.total_energy.setValue(self.illum_duration.getValue() * self.irradiance.getValue() * 1e-3)
+#         self.total_duration.setValue((self.on_duration.getValue()+self.repetition_time.getValue()*(self.num_reps.getValue()-1)))
+#         params = {
+#             'experiment config': {
+#                 'folderpath': self.folderpath,
+#                 'on duration': {'value': self.on_duration.getValue(unit=self.on_duration.unit), 'unit':self.on_duration.unit},
+#                 'repetition time': {'value': self.repetition_time.getValue(unit=self.repetition_time.unit), 'unit':self.repetition_time.unit},
+#                 'num. illums': self.num_reps.getValue(),
+#                 'Laser irradiance (mW/cm²)': self.irradiance.getValue(),
+#             }
+#         }
+#         self.params_for_graph.emit(params)
+#         return
+#
+#     def irr_calc(self):
+#         self.irr_calc_window = PowerCalc(distance=self.distance_read, laser_power=self.laser_power)
+#         self.irr_calc_window.setFont(QFont("Arial", 8))
+#         self.irr_calc_window.irradiance_emit.connect(self.update_irradiance)
+#         self.irr_calc_window.show()
+#
+#     @pyqtSlot(tuple)
+#     def update_irradiance(self, values):
+#         distance_read, power, irradiance = values
+#         self.distance_read = distance_read
+#         self.laser_power = power
+#         self.irradiance.setValue(irradiance)
+#
+#     def init_ui(self):
+#         self.frame = QFrame()
+#         self.grid = QGridLayout()
+#
+#         self.start_btn = QPushButton('Start', clicked=self.go)
+#         experiment_box = QGridLayout()
+#         label = QLabel('PBM session parameters')
+#         label.setStyleSheet("QLabel {font: bold 8pt;}")
+#         experiment_box.addWidget(label, 0, 0, 1, 2)
+#         experiment_box.addLayout(self.on_duration, 1, 0, 1, 2)
+#         experiment_box.addLayout(self.repetition_time, 2, 0, 1, 2)
+#         experiment_box.addLayout(self.num_reps, 3, 0, 1, 2)
+#         experiment_box.addWidget(self.irr_calc_btn, 4, 0, 1, 1)
+#         self.irr_calc_btn.setFixedSize(QSize(55,22))
+#         experiment_box.addLayout(self.irradiance, 4, 1, 1, 1)
+#
+#         experiment_box.addItem(QSpacerItem(1, 1, QSizePolicy.Expanding, QSizePolicy.Expanding), 1, 2, 5, 1)
+#
+#         label_2 = QLabel('With these parameters, you will get:')
+#         label_2.setStyleSheet("QLabel {font-size: 8pt;}")
+#         experiment_box.addWidget(label_2, 1, 3, 1, 1)
+#         experiment_box.addLayout(self.illum_duration, 2,3, 1, 1)
+#         experiment_box.addLayout(self.total_energy, 3,3, 1, 1)
+#         experiment_box.addLayout(self.total_duration, 4,3, 1, 1)
+#
+#
+#         self.frame.setLayout(experiment_box)
+#         self.frame.setLineWidth(1)
+#         self.frame.setFrameStyle(0x0001)
+#
+#         self.grid.addWidget(self.frame)
+#         # self.grid.setSizeConstraint(3)
+#         self.setLayout(self.grid)
+#
+#     def select_dir(self):
+#         self.folderpath = QFileDialog.getExistingDirectory(self, 'Select Folder for saving images',
+#                                                            directory=self.folderpath)
+#         print('Selected folder for saving : ' + self.folderpath)
+#
+#     def load_params(self, params=None):
+#         if params is None:
+#             with open(self.folderpath+r"/expmt_params.json", 'r') as f:
+#                 params = json.load(f)
+#             f.close()
+#         try:
+#             if self.first_setup:
+#                 self.folder_path = default_folder
+#             else:
+#                 self.folderpath = params['experiment config']['folderpath']
+#
+#             self.on_duration.setValue(params['experiment config']['on duration']['value'], unit=params['experiment config']['on duration']['unit'])
+#             self.repetition_time.setValue(params['experiment config']['repetition time']['value'], unit=params['experiment config']['repetition time']['unit'])
+#             self.num_reps.setValue(params['experiment config']['num. illums'])
+#             self.irradiance.setValue(params['experiment config']['Laser irradiance (mW/cm²)'])
+#             self.distance_read = params['experiment config']['distance read']
+#             self.laser_power = params['experiment config']['laser power']
+#
+#             self.update_calc()
+#         except:
+#             print('input params not readable')
+#
+#     def save_params(self, file=True):
+#         filename = self.folderpath + r"/" + time.strftime("%Y%m%d_%H%M%S") + r"_expmt_params.json"
+#         params = {
+#             'experiment config':{
+#                 'folderpath': self.folderpath,
+#                 'on duration': {'value': self.on_duration.getValue(unit=self.on_duration.unit), 'unit':self.on_duration.unit},
+#                 'repetition time': {'value': self.repetition_time.getValue(unit=self.repetition_time.unit), 'unit':self.repetition_time.unit},
+#                 'num. illums': self.num_reps.getValue(),
+#                 'Laser irradiance (mW/cm²)': self.irradiance.getValue(),
+#                 'distance read': self.distance_read,
+#                 'laser power': self.laser_power,
+#                 'filename': filename
+#             }
+#         }
+#         if file:
+#             with open(self.folderpath+r"/expmt_params.json", 'w') as f:
+#                 json.dump(params, f, indent=4)
+#             f.close()
+#             with open(self.folderpath+r"/"+time.strftime("%Y%m%d_%H%M%S")+r"_expmt_params.json", 'w') as f:
+#                 json.dump(params, f, indent=4)
+#             f.close()
+#         return params
+#
+#     def close(self):
+#         if self.irr_calc_window is not None:
+#             self.irr_calc_window.close()
+#         super().close()
 
-    def go(self):
-        params = self.save_params(file=True)
-        self.params_changed.emit(params)
-        self.params_for_graph.emit(params)
-        self.go_time.emit()
 
-    def cancel(self):
-        params = self.save_params(file=False)
-        self.params_changed.emit(params)
-        self.params_for_graph.emit(params)
-        self.close()
-
-    def __init__(self, parent_app, instr_list, params=None, first_setup=False, expmt_graph=None):
-        super().__init__()
-        self.parent_app = parent_app
-        controls = extract_controls(parent_app, instr_list)
-        if expmt_graph is not None:
-            self.params_for_graph.connect(expmt_graph.update_data)
-        self.first_setup=first_setup
-        try:
-            self.laser_control = controls['laser']
-        except:
-            print('missing laser controller')
-
-        self.setLocale(QLocale('C'))
-
-        """ timing parameters """
-        self.folderpath = default_folder
-        self.btn_select_dir = QPushButton('Select saving directory')
-        self.btn_select_dir.clicked.connect(self.select_dir)
-        self.btn_select_dir.setFixedWidth(80)
-
-        self.on_duration = VarLine("Duration of each illumination", None, display_decimals = 1, tracked=True, wide=True, right_align=False, units=time_units, name='on duration')
-        self.repetition_time = VarLine("Delay between illuminations", None, display_decimals = 1, tracked=True, wide=True, right_align=False, units=time_units, name='rep time')
-        self.num_reps = VarLine("Number of illuminations in session", None, decimals=0, tracked=True, wide=True, right_align=False, name='num reps')
-
-        self.on_duration.var.setRange(0., 1e18)
-        self.repetition_time.var.setRange(0., 1e18)
-        self.num_reps.var.setRange(0, 100000)
-        self.on_duration.var.valueChanged.connect(self.update_calc)
-        self.repetition_time.var.valueChanged.connect(self.update_calc)
-        self.num_reps.var.valueChanged.connect(self.update_calc)
-
-        self.distance_read = 0.
-        self.laser_power = 20
-
-        self.irradiance = VarLine("Irradiance", None, decimals = 1, tracked=True, wide=True, right_align=False, units={"mW/cm²":1}, unit_width=50, name='irradiance', inform_only=True)
-        self.irradiance.var.setRange(0, 100)
-        self.irradiance.var.valueChanged.connect(self.update_calc)
-        self.irradiance.setToolTip("Indicate laser irradiance here, from YOUR knowledge of it.\nUseful for logging experiments, but WILL NOT change the laser power by itself.")
-
-        self.irr_calc_btn = QPushButton('Compute')
-        self.irr_calc_btn.clicked.connect(self.irr_calc)
-
-        self.illum_duration = VarLine("Total duration of illumination", None, display_decimals = 1, wide=True, inform_only=True, right_align=False, units=time_units, name='illum duration')
-        self.total_duration = VarLine("Total duration of session", None, display_decimals = 1, wide=True, inform_only=True, right_align=False, units=time_units, name='tot duration')
-        self.total_energy = VarLine("Total energy delivered", None, display_decimals=2,  wide=True, inform_only=True, right_align=False, units={'J/cm²':1}, unit_width=38, name='tot energy')
-        self.total_energy.var.setRange(0,1e9)
-        self.illum_duration.var.setRange(0, 1e18)
-        self.total_duration.var.setRange(0, 1e18)
-
-        self.init_ui()
-        self.load_params(params)
-
-    def update_calc(self):
-        self.repetition_time.setMinimum(self.on_duration.getValue()) #TODO: modifier setRange/setMinimum avec une dépendance sur les unités.
-        self.illum_duration.setValue(self.on_duration.getValue()*self.num_reps.getValue())
-        self.total_energy.setValue(self.illum_duration.getValue() * self.irradiance.getValue() * 1e-3)
-        self.total_duration.setValue((self.on_duration.getValue()+self.repetition_time.getValue()*(self.num_reps.getValue()-1)))
-        params = {
-            'experiment config': {
-                'folderpath': self.folderpath,
-                'on duration': {'value': self.on_duration.getValue(unit=self.on_duration.unit), 'unit':self.on_duration.unit},
-                'repetition time': {'value': self.repetition_time.getValue(unit=self.repetition_time.unit), 'unit':self.repetition_time.unit},
-                'num. illums': self.num_reps.getValue(),
-                'Laser irradiance (mW/cm²)': self.irradiance.getValue(),
-            }
-        }
-        self.params_for_graph.emit(params)
-        return
-
-    def irr_calc(self):
-        self.irr_calc_window = PowerCalc(distance=self.distance_read, laser_power=self.laser_power)
-        self.irr_calc_window.setFont(QFont("Arial", 8))
-        self.irr_calc_window.irradiance_emit.connect(self.update_irradiance)
-        self.irr_calc_window.show()
-
-    @pyqtSlot(tuple)
-    def update_irradiance(self, values):
-        distance_read, power, irradiance = values
-        self.distance_read = distance_read
-        self.laser_power = power
-        self.irradiance.setValue(irradiance)
-
-    def init_ui(self):
-        self.frame = QFrame()
-        self.grid = QGridLayout()
-
-        self.start_btn = QPushButton('Start', clicked=self.go)
-        experiment_box = QGridLayout()
-        label = QLabel('PBM session parameters')
-        label.setStyleSheet("QLabel {font: bold 8pt;}")
-        experiment_box.addWidget(label, 0, 0, 1, 2)
-        experiment_box.addLayout(self.on_duration, 1, 0, 1, 2)
-        experiment_box.addLayout(self.repetition_time, 2, 0, 1, 2)
-        experiment_box.addLayout(self.num_reps, 3, 0, 1, 2)
-        experiment_box.addWidget(self.irr_calc_btn, 4, 0, 1, 1)
-        self.irr_calc_btn.setFixedSize(QSize(55,22))
-        experiment_box.addLayout(self.irradiance, 4, 1, 1, 1)
-
-        experiment_box.addItem(QSpacerItem(1, 1, QSizePolicy.Expanding, QSizePolicy.Expanding), 1, 2, 5, 1)
-
-        label_2 = QLabel('With these parameters, you will get:')
-        label_2.setStyleSheet("QLabel {font-size: 8pt;}")
-        experiment_box.addWidget(label_2, 1, 3, 1, 1)
-        experiment_box.addLayout(self.illum_duration, 2,3, 1, 1)
-        experiment_box.addLayout(self.total_energy, 3,3, 1, 1)
-        experiment_box.addLayout(self.total_duration, 4,3, 1, 1)
-
-
-        self.frame.setLayout(experiment_box)
-        self.frame.setLineWidth(1)
-        self.frame.setFrameStyle(0x0001)
-
-        self.grid.addWidget(self.frame)
-        # self.grid.setSizeConstraint(3)
-        self.setLayout(self.grid)
-
-    def select_dir(self):
-        self.folderpath = QFileDialog.getExistingDirectory(self, 'Select Folder for saving images',
-                                                           directory=self.folderpath)
-        print('Selected folder for saving : ' + self.folderpath)
-
-    def load_params(self, params=None):
-        if params is None:
-            with open(self.folderpath+r"/expmt_params.json", 'r') as f:
-                params = json.load(f)
-            f.close()
-        try:
-            if self.first_setup:
-                self.folder_path = default_folder
-            else:
-                self.folderpath = params['experiment config']['folderpath']
-
-            self.on_duration.setValue(params['experiment config']['on duration']['value'], unit=params['experiment config']['on duration']['unit'])
-            self.repetition_time.setValue(params['experiment config']['repetition time']['value'], unit=params['experiment config']['repetition time']['unit'])
-            self.num_reps.setValue(params['experiment config']['num. illums'])
-            self.irradiance.setValue(params['experiment config']['Laser irradiance (mW/cm²)'])
-            self.distance_read = params['experiment config']['distance read']
-            self.laser_power = params['experiment config']['laser power']
-
-            self.update_calc()
-        except:
-            print('input params not readable')
-
-    def save_params(self, file=True):
-        filename = self.folderpath + r"/" + time.strftime("%Y%m%d_%H%M%S") + r"_expmt_params.json"
-        params = {
-            'experiment config':{
-                'folderpath': self.folderpath,
-                'on duration': {'value': self.on_duration.getValue(unit=self.on_duration.unit), 'unit':self.on_duration.unit},
-                'repetition time': {'value': self.repetition_time.getValue(unit=self.repetition_time.unit), 'unit':self.repetition_time.unit},
-                'num. illums': self.num_reps.getValue(),
-                'Laser irradiance (mW/cm²)': self.irradiance.getValue(),
-                'distance read': self.distance_read,
-                'laser power': self.laser_power,
-                'filename': filename
-            }
-        }
-        if file:
-            with open(self.folderpath+r"/expmt_params.json", 'w') as f:
-                json.dump(params, f, indent=4)
-            f.close()
-            with open(self.folderpath+r"/"+time.strftime("%Y%m%d_%H%M%S")+r"_expmt_params.json", 'w') as f:
-                json.dump(params, f, indent=4)
-            f.close()
-        return params
-
-    def close(self):
-        if self.irr_calc_window is not None:
-            self.irr_calc_window.close()
-        super().close()
-
-
-class ExpmtSetup_embedded_TotalTime(QWidget):
-    params_changed = pyqtSignal(dict)
-    params_for_graph = pyqtSignal(dict)
-    go_time = pyqtSignal()
-
-    def go(self):
-        params = self.save_params(file=True)
-        self.params_changed.emit(params)
-        self.params_for_graph.emit(params)
-        self.go_time.emit()
-
-    def cancel(self):
-        params = self.save_params(file=False)
-        self.params_changed.emit(params)
-        self.params_for_graph.emit(params)
-        self.close()
-
-    def __init__(self, parent_app, instr_list, params=None, first_setup=False, expmt_graph=None):
-        super().__init__()
-        self.parent_app = parent_app
-        controls = extract_controls(parent_app, instr_list)
-        if expmt_graph is not None:
-            self.params_for_graph.connect(expmt_graph.update_data)
-        self.first_setup = first_setup
-        try:
-            self.laser_control = controls['laser']
-        except:
-            print('missing laser controller')
-
-        self.setLocale(QLocale('C'))
-
-        """ timing parameters """
-        self.folderpath = default_folder
-        self.btn_select_dir = QPushButton('Select saving directory')
-        self.btn_select_dir.clicked.connect(self.select_dir)
-        self.btn_select_dir.setFixedWidth(80)
-
-        self.on_duration = VarLine("Duration of each illumination", None, display_decimals=1, tracked=True, wide=True,
-                                   right_align=False, units=time_units, name='on duration')
-        self.repetition_time = VarLine("Delay between illuminations", None, display_decimals=1, tracked=True, wide=True,
-                                       inform_only=True, right_align=False, units=time_units, name='rep time')
-        self.num_reps = VarLine("Number of illuminations in session", None, decimals=0, tracked=True, wide=True,
-                                right_align=False, name='num reps')
-        self.total_duration = VarLine("Total duration of session", None, display_decimals=1, wide=True,
-                                      right_align=False, units=time_units, name='tot duration')
-
-        self.on_duration.var.setRange(0., 1e18)
-        self.repetition_time.var.setRange(0., 1e18)
-        self.num_reps.var.setRange(0, 100000)
-        self.on_duration.var.valueChanged.connect(self.update_calc)
-        self.total_duration.var.valueChanged.connect(self.update_calc)
-        self.num_reps.var.valueChanged.connect(self.update_calc)
-
-        self.distance_read = 0.
-        self.laser_power = 20
-
-        self.irradiance = VarLine("Irradiance", None, decimals=1, tracked=True, wide=True, right_align=False,
-                                  units={"mW/cm²": 1}, unit_width=50, name='irradiance', inform_only=True)
-        self.irradiance.var.setRange(0, 100)
-        self.irradiance.var.valueChanged.connect(self.update_calc)
-        self.irradiance.setToolTip(
-            "Indicate laser irradiance here, from YOUR knowledge of it.\nUseful for logging experiments, but WILL NOT change the laser power by itself.")
-
-        self.irr_calc_btn = QPushButton('Compute')
-        self.irr_calc_btn.clicked.connect(self.irr_calc)
-
-        self.illum_duration = VarLine("Total duration of illumination", None, display_decimals=1, wide=True,
-                                      inform_only=True, right_align=False, units=time_units, name='illum duration')
-        self.total_energy = VarLine("Total energy delivered", None, display_decimals=2, wide=True, inform_only=True,
-                                    right_align=False, units={'J/cm²': 1}, unit_width=38, name='tot energy')
-        self.total_energy.var.setRange(0, 1e9)
-        self.illum_duration.var.setRange(0, 1e18)
-        self.total_duration.var.setRange(0, 1e18)
-
-        self.init_ui()
-        self.load_params(params)
-
-    def update_calc(self):
-        self.repetition_time.setMinimum(self.on_duration.getValue())
-        self.total_duration.setMinimum(self.on_duration.getValue() * self.num_reps.getValue())
-        if self.num_reps.getValue() > 1:
-            delay = (self.total_duration.getValue() - self.on_duration.getValue()) / (self.num_reps.getValue() - 1)
-        else:
-            delay = 0.
-        self.repetition_time.setValue(delay)
-
-        self.illum_duration.setValue(self.on_duration.getValue() * self.num_reps.getValue())
-        self.total_energy.setValue(self.illum_duration.getValue() * self.irradiance.getValue() * 1e-3)
-        # self.total_duration.setValue((self.on_duration.getValue()+self.repetition_time.getValue()*(self.num_reps.getValue()-1)))
-        params = {
-            'experiment config': {
-                'folderpath': self.folderpath,
-                'on duration': {'value': self.on_duration.getValue(unit=self.on_duration.unit),
-                                'unit': self.on_duration.unit},
-                'total duration': {'value': self.total_duration.getValue(unit=self.total_duration.unit),
-                                   'unit': self.total_duration.unit},
-                'repetition time': {'value': self.repetition_time.getValue(unit=self.repetition_time.unit),
-                                    'unit': self.repetition_time.unit},
-                'num. illums': self.num_reps.getValue(),
-                'Laser irradiance (mW/cm²)': self.irradiance.getValue(),
-            }
-        }
-        self.params_for_graph.emit(params)
-        return
-
-    def irr_calc(self):
-        self.irr_calc_window = PowerCalc(distance=self.distance_read, laser_power=self.laser_power)
-        self.irr_calc_window.setFont(QFont("Arial", 8))
-        self.irr_calc_window.irradiance_emit.connect(self.update_irradiance)
-        self.irr_calc_window.show()
-
-    @pyqtSlot(tuple)
-    def update_irradiance(self, values):
-        distance_read, power, irradiance = values
-        self.distance_read = distance_read
-        self.laser_power = power
-        self.irradiance.setValue(irradiance)
-
-    def init_ui(self):
-        self.frame = QFrame()
-        self.grid = QGridLayout()
-
-        self.start_btn = QPushButton('Start', clicked=self.go)
-        experiment_box = QGridLayout()
-        label = QLabel('PBM session parameters')
-        label.setStyleSheet("QLabel {font: bold 8pt;}")
-        experiment_box.addWidget(label, 0, 0, 1, 2)
-        experiment_box.addLayout(self.on_duration, 1, 0, 1, 2)
-        experiment_box.addLayout(self.total_duration, 2, 0, 1, 2)
-        experiment_box.addLayout(self.num_reps, 3, 0, 1, 2)
-        experiment_box.addWidget(self.irr_calc_btn, 4, 0, 1, 1)
-        self.irr_calc_btn.setFixedSize(QSize(55, 22))
-        experiment_box.addLayout(self.irradiance, 4, 1, 1, 1)
-
-        experiment_box.addItem(QSpacerItem(1, 1, QSizePolicy.Expanding, QSizePolicy.Expanding), 1, 2, 5, 1)
-
-        label_2 = QLabel('With these parameters, you will get:')
-        label_2.setStyleSheet("QLabel {font-size: 8pt;}")
-        experiment_box.addWidget(label_2, 1, 3, 1, 1)
-        experiment_box.addLayout(self.illum_duration, 2, 3, 1, 1)
-        experiment_box.addLayout(self.total_energy, 3, 3, 1, 1)
-        experiment_box.addLayout(self.repetition_time, 4, 3, 1, 1)
-
-        self.frame.setLayout(experiment_box)
-        self.frame.setLineWidth(1)
-        self.frame.setFrameStyle(0x0001)
-
-        self.grid.addWidget(self.frame)
-        # self.grid.setSizeConstraint(3)
-        self.setLayout(self.grid)
-
-    def select_dir(self):
-        self.folderpath = QFileDialog.getExistingDirectory(self, 'Select Folder for saving images',
-                                                           directory=self.folderpath)
-        print('Selected folder for saving : ' + self.folderpath)
-
-    def load_params(self, params=None):
-        if params is None:
-            with open(self.folderpath + r"/expmt_params.json", 'r') as f:
-                params = json.load(f)
-            f.close()
-        try:
-            if self.first_setup:
-                self.folder_path = default_folder
-            else:
-                self.folderpath = params['experiment config']['folderpath']
-
-            self.on_duration.setValue(params['experiment config']['on duration']['value'],
-                                      unit=params['experiment config']['on duration']['unit'])
-            self.total_duration.setValue(params['experiment config']['total duration']['value'],
-                                         unit=params['experiment config']['total duration']['unit'])
-            self.repetition_time.setValue(params['experiment config']['repetition time']['value'],
-                                          unit=params['experiment config']['repetition time']['unit'])
-            self.num_reps.setValue(params['experiment config']['num. illums'])
-            self.irradiance.setValue(params['experiment config']['Laser irradiance (mW/cm²)'])
-            self.distance_read = params['experiment config']['distance read']
-            self.laser_power = params['experiment config']['laser power']
-
-            self.update_calc()
-        except:
-            print('input params not readable')
-
-    def save_params(self, file=True):
-        filename = self.folderpath + r"/" + time.strftime("%Y%m%d_%H%M%S") + r"_expmt_params.json"
-        params = {
-            'experiment config': {
-                'folderpath': self.folderpath,
-                'on duration': {'value': self.on_duration.getValue(unit=self.on_duration.unit),
-                                'unit': self.on_duration.unit},
-                'total duration': {'value': self.total_duration.getValue(unit=self.total_duration.unit),
-                                   'unit': self.total_duration.unit},
-                'repetition time': {'value': self.repetition_time.getValue(unit=self.repetition_time.unit),
-                                    'unit': self.repetition_time.unit},
-                'num. illums': self.num_reps.getValue(),
-                'Laser irradiance (mW/cm²)': self.irradiance.getValue(),
-                'distance read': self.distance_read,
-                'laser power': self.laser_power,
-                'filename': filename
-            }
-        }
-        if file:
-            with open(self.folderpath + r"/expmt_params.json", 'w') as f:
-                json.dump(params, f, indent=4)
-            f.close()
-            with open(self.folderpath + r"/" + time.strftime("%Y%m%d_%H%M%S") + r"_expmt_params.json", 'w') as f:
-                json.dump(params, f, indent=4)
-            f.close()
-        return params
-
-    def close(self):
-        if self.irr_calc_window is not None:
-            self.irr_calc_window.close()
-        super().close()
+# class ExpmtSetup_embedded_TotalTime(QWidget):
+#     params_changed = pyqtSignal(dict)
+#     params_for_graph = pyqtSignal(dict)
+#     go_time = pyqtSignal()
+#
+#     def go(self):
+#         params = self.save_params(file=True)
+#         self.params_changed.emit(params)
+#         self.params_for_graph.emit(params)
+#         self.go_time.emit()
+#
+#     def cancel(self):
+#         params = self.save_params(file=False)
+#         self.params_changed.emit(params)
+#         self.params_for_graph.emit(params)
+#         self.close()
+#
+#     def __init__(self, parent_app, instr_list, params=None, first_setup=False, expmt_graph=None):
+#         super().__init__()
+#         self.parent_app = parent_app
+#         controls = extract_controls(parent_app, instr_list)
+#         if expmt_graph is not None:
+#             self.params_for_graph.connect(expmt_graph.update_data)
+#         self.first_setup = first_setup
+#         try:
+#             self.laser_control = controls['laser']
+#         except:
+#             print('missing laser controller')
+#
+#         self.setLocale(QLocale('C'))
+#
+#         """ timing parameters """
+#         self.folderpath = default_folder
+#         self.btn_select_dir = QPushButton('Select saving directory')
+#         self.btn_select_dir.clicked.connect(self.select_dir)
+#         self.btn_select_dir.setFixedWidth(80)
+#
+#         self.on_duration = VarLine("Duration of each illumination", None, display_decimals=1, tracked=True, wide=True,
+#                                    right_align=False, units=time_units, name='on duration')
+#         self.repetition_time = VarLine("Delay between illuminations", None, display_decimals=1, tracked=True, wide=True,
+#                                        inform_only=True, right_align=False, units=time_units, name='rep time')
+#         self.num_reps = VarLine("Number of illuminations in session", None, decimals=0, tracked=True, wide=True,
+#                                 right_align=False, name='num reps')
+#         self.total_duration = VarLine("Total duration of session", None, display_decimals=1, wide=True,
+#                                       right_align=False, units=time_units, name='tot duration')
+#
+#         self.on_duration.var.setRange(0., 1e18)
+#         self.repetition_time.var.setRange(0., 1e18)
+#         self.num_reps.var.setRange(0, 100000)
+#         self.on_duration.var.valueChanged.connect(self.update_calc)
+#         self.total_duration.var.valueChanged.connect(self.update_calc)
+#         self.num_reps.var.valueChanged.connect(self.update_calc)
+#
+#         self.distance_read = 0.
+#         self.laser_power = 20
+#
+#         self.irradiance = VarLine("Irradiance", None, decimals=1, tracked=True, wide=True, right_align=False,
+#                                   units={"mW/cm²": 1}, unit_width=50, name='irradiance', inform_only=True)
+#         self.irradiance.var.setRange(0, 100)
+#         self.irradiance.var.valueChanged.connect(self.update_calc)
+#         self.irradiance.setToolTip(
+#             "Indicate laser irradiance here, from YOUR knowledge of it.\nUseful for logging experiments, but WILL NOT change the laser power by itself.")
+#
+#         self.irr_calc_btn = QPushButton('Compute')
+#         self.irr_calc_btn.clicked.connect(self.irr_calc)
+#
+#         self.illum_duration = VarLine("Total duration of illumination", None, display_decimals=1, wide=True,
+#                                       inform_only=True, right_align=False, units=time_units, name='illum duration')
+#         self.total_energy = VarLine("Total energy delivered", None, display_decimals=2, wide=True, inform_only=True,
+#                                     right_align=False, units={'J/cm²': 1}, unit_width=38, name='tot energy')
+#         self.total_energy.var.setRange(0, 1e9)
+#         self.illum_duration.var.setRange(0, 1e18)
+#         self.total_duration.var.setRange(0, 1e18)
+#
+#         self.init_ui()
+#         self.load_params(params)
+#
+#     def update_calc(self):
+#         self.repetition_time.setMinimum(self.on_duration.getValue())
+#         self.total_duration.setMinimum(self.on_duration.getValue() * self.num_reps.getValue())
+#         if self.num_reps.getValue() > 1:
+#             delay = (self.total_duration.getValue() - self.on_duration.getValue()) / (self.num_reps.getValue() - 1)
+#         else:
+#             delay = 0.
+#         self.repetition_time.setValue(delay)
+#
+#         self.illum_duration.setValue(self.on_duration.getValue() * self.num_reps.getValue())
+#         self.total_energy.setValue(self.illum_duration.getValue() * self.irradiance.getValue() * 1e-3)
+#         # self.total_duration.setValue((self.on_duration.getValue()+self.repetition_time.getValue()*(self.num_reps.getValue()-1)))
+#         params = {
+#             'experiment config': {
+#                 'folderpath': self.folderpath,
+#                 'on duration': {'value': self.on_duration.getValue(unit=self.on_duration.unit),
+#                                 'unit': self.on_duration.unit},
+#                 'total duration': {'value': self.total_duration.getValue(unit=self.total_duration.unit),
+#                                    'unit': self.total_duration.unit},
+#                 'repetition time': {'value': self.repetition_time.getValue(unit=self.repetition_time.unit),
+#                                     'unit': self.repetition_time.unit},
+#                 'num. illums': self.num_reps.getValue(),
+#                 'Laser irradiance (mW/cm²)': self.irradiance.getValue(),
+#             }
+#         }
+#         self.params_for_graph.emit(params)
+#         return
+#
+#     def irr_calc(self):
+#         self.irr_calc_window = PowerCalc(distance=self.distance_read, laser_power=self.laser_power)
+#         self.irr_calc_window.setFont(QFont("Arial", 8))
+#         self.irr_calc_window.irradiance_emit.connect(self.update_irradiance)
+#         self.irr_calc_window.show()
+#
+#     @pyqtSlot(tuple)
+#     def update_irradiance(self, values):
+#         distance_read, power, irradiance = values
+#         self.distance_read = distance_read
+#         self.laser_power = power
+#         self.irradiance.setValue(irradiance)
+#
+#     def init_ui(self):
+#         self.frame = QFrame()
+#         self.grid = QGridLayout()
+#
+#         self.start_btn = QPushButton('Start', clicked=self.go)
+#         experiment_box = QGridLayout()
+#         label = QLabel('PBM session parameters')
+#         label.setStyleSheet("QLabel {font: bold 8pt;}")
+#         experiment_box.addWidget(label, 0, 0, 1, 2)
+#         experiment_box.addLayout(self.on_duration, 1, 0, 1, 2)
+#         experiment_box.addLayout(self.total_duration, 2, 0, 1, 2)
+#         experiment_box.addLayout(self.num_reps, 3, 0, 1, 2)
+#         experiment_box.addWidget(self.irr_calc_btn, 4, 0, 1, 1)
+#         self.irr_calc_btn.setFixedSize(QSize(55, 22))
+#         experiment_box.addLayout(self.irradiance, 4, 1, 1, 1)
+#
+#         experiment_box.addItem(QSpacerItem(1, 1, QSizePolicy.Expanding, QSizePolicy.Expanding), 1, 2, 5, 1)
+#
+#         label_2 = QLabel('With these parameters, you will get:')
+#         label_2.setStyleSheet("QLabel {font-size: 8pt;}")
+#         experiment_box.addWidget(label_2, 1, 3, 1, 1)
+#         experiment_box.addLayout(self.illum_duration, 2, 3, 1, 1)
+#         experiment_box.addLayout(self.total_energy, 3, 3, 1, 1)
+#         experiment_box.addLayout(self.repetition_time, 4, 3, 1, 1)
+#
+#         self.frame.setLayout(experiment_box)
+#         self.frame.setLineWidth(1)
+#         self.frame.setFrameStyle(0x0001)
+#
+#         self.grid.addWidget(self.frame)
+#         # self.grid.setSizeConstraint(3)
+#         self.setLayout(self.grid)
+#
+#     def select_dir(self):
+#         self.folderpath = QFileDialog.getExistingDirectory(self, 'Select Folder for saving images',
+#                                                            directory=self.folderpath)
+#         print('Selected folder for saving : ' + self.folderpath)
+#
+#     def load_params(self, params=None):
+#         if params is None:
+#             with open(self.folderpath + r"/expmt_params.json", 'r') as f:
+#                 params = json.load(f)
+#             f.close()
+#         try:
+#             if self.first_setup:
+#                 self.folder_path = default_folder
+#             else:
+#                 self.folderpath = params['experiment config']['folderpath']
+#
+#             self.on_duration.setValue(params['experiment config']['on duration']['value'],
+#                                       unit=params['experiment config']['on duration']['unit'])
+#             self.total_duration.setValue(params['experiment config']['total duration']['value'],
+#                                          unit=params['experiment config']['total duration']['unit'])
+#             self.repetition_time.setValue(params['experiment config']['repetition time']['value'],
+#                                           unit=params['experiment config']['repetition time']['unit'])
+#             self.num_reps.setValue(params['experiment config']['num. illums'])
+#             self.irradiance.setValue(params['experiment config']['Laser irradiance (mW/cm²)'])
+#             self.distance_read = params['experiment config']['distance read']
+#             self.laser_power = params['experiment config']['laser power']
+#
+#             self.update_calc()
+#         except:
+#             print('input params not readable')
+#
+#     def save_params(self, file=True):
+#         filename = self.folderpath + r"/" + time.strftime("%Y%m%d_%H%M%S") + r"_expmt_params.json"
+#         params = {
+#             'experiment config': {
+#                 'folderpath': self.folderpath,
+#                 'on duration': {'value': self.on_duration.getValue(unit=self.on_duration.unit),
+#                                 'unit': self.on_duration.unit},
+#                 'total duration': {'value': self.total_duration.getValue(unit=self.total_duration.unit),
+#                                    'unit': self.total_duration.unit},
+#                 'repetition time': {'value': self.repetition_time.getValue(unit=self.repetition_time.unit),
+#                                     'unit': self.repetition_time.unit},
+#                 'num. illums': self.num_reps.getValue(),
+#                 'Laser irradiance (mW/cm²)': self.irradiance.getValue(),
+#                 'distance read': self.distance_read,
+#                 'laser power': self.laser_power,
+#                 'filename': filename
+#             }
+#         }
+#         if file:
+#             with open(self.folderpath + r"/expmt_params.json", 'w') as f:
+#                 json.dump(params, f, indent=4)
+#             f.close()
+#             with open(self.folderpath + r"/" + time.strftime("%Y%m%d_%H%M%S") + r"_expmt_params.json", 'w') as f:
+#                 json.dump(params, f, indent=4)
+#             f.close()
+#         return params
+#
+#     def close(self):
+#         if self.irr_calc_window is not None:
+#             self.irr_calc_window.close()
+#         super().close()
 
 class ExpmtSetup_embedded_TotalTime_TotalIllumDuration(QWidget):
     params_changed = pyqtSignal(dict)
@@ -800,6 +800,7 @@ class ExpmtSetup_embedded_TotalTime_TotalIllumDuration(QWidget):
 
         self.distance_read = 0.
         self.laser_power = 20
+        self.laser_source = None
 
         self.irradiance = VarLine("Irradiance", None, decimals=1, tracked=True, wide=True, right_align=False,
                                   units={"mW/cm²": 1}, unit_width=50, name='irradiance', inform_only=True)
@@ -826,11 +827,24 @@ class ExpmtSetup_embedded_TotalTime_TotalIllumDuration(QWidget):
         self.repetition_time.var.setRange(0., 1e18)
         self.total_duration.var.setRange(0, 1e18)
 
+        self.laser_source_label = QLabel("Laser source: not selected")
+        self.laser_source_label.setStyleSheet("QLabel {font: bold 8pt; background-color: rgb(200,200,200); color: rgb(255,0,0)}")
+        self.laser_source_label.setFixedWidth(205)
+
         self.init_ui()
         self.irr_calc_window=None
         self.load_params(params)
 
+    @pyqtSlot(str)
+    def update_laser_source(self, new_source):
+        self.laser_source = new_source
+        if new_source is not None:
+            self.laser_source_label.setText("Laser source: "+new_source)
+        else:
+            self.laser_source_label.setText("Laser source: not selected")
+
     def update_calc(self):
+        self.update_laser_source(self.laser_source)
         # self.repetition_time.setMinimum(self.on_duration.getValue())
         self.total_duration.setMinimum(self.illum_duration.getValue())
 
@@ -861,13 +875,15 @@ class ExpmtSetup_embedded_TotalTime_TotalIllumDuration(QWidget):
                 'illum duration': {'value': self.illum_duration.getValue(unit=self.illum_duration.unit),
                                    'unit': self.illum_duration.unit},
                 'Laser irradiance (mW/cm²)': self.irradiance.getValue(),
+                'Laser source': None,
             }
         }
         self.params_for_graph.emit(params)
         return
 
     def irr_calc(self):
-        self.irr_calc_window = PowerCalc(distance=self.distance_read, laser_power=self.laser_power)
+        self.irr_calc_window = PowerCalc(distance=self.distance_read, laser_power=self.laser_power, laser_source=self.laser_source)
+        self.irr_calc_window.laser_list.currentTextChanged.connect(self.update_laser_source)
         self.irr_calc_window.setFont(QFont("Arial", 8))
         self.irr_calc_window.irradiance_emit.connect(self.update_irradiance)
         self.irr_calc_window.show()
@@ -889,6 +905,7 @@ class ExpmtSetup_embedded_TotalTime_TotalIllumDuration(QWidget):
         label = QLabel('PBM session parameters')
         label.setStyleSheet("QLabel {font: bold 8pt;}")
         experiment_box.addWidget(label, 0, 0, 1, 2)
+        experiment_box.addWidget(self.laser_source_label, 0, 2, 1, 3, Qt.AlignRight)
         experiment_box.addLayout(self.illum_duration, 1, 0, 1, 2)
         experiment_box.addLayout(self.total_duration, 2, 0, 1, 2)
         experiment_box.addLayout(self.num_reps, 3, 0, 1, 2)
@@ -941,6 +958,10 @@ class ExpmtSetup_embedded_TotalTime_TotalIllumDuration(QWidget):
             self.irradiance.setValue(params['experiment config']['Laser irradiance (mW/cm²)'])
             self.distance_read = params['experiment config']['distance read']
             self.laser_power = params['experiment config']['laser power']
+            try:
+                self.laser_source = params['experiment config']['laser source']
+            except KeyError:
+                self.laser_source = None
 
             self.update_calc()
         except:
@@ -963,6 +984,7 @@ class ExpmtSetup_embedded_TotalTime_TotalIllumDuration(QWidget):
                 'Laser irradiance (mW/cm²)': self.irradiance.getValue(),
                 'distance read': self.distance_read,
                 'laser power': self.laser_power,
+                'laser source': self.laser_source,
                 'filename': filename
             }
         }

@@ -10,8 +10,7 @@ import sys
 
 from drivers import LaserTTL
 from controllers import LaserTTLController
-from timed_experiment import ExpControl, ExpmtSetup_embedded, ExpmtSetup_embedded_TotalTime, \
-    ExpmtSetup_embedded_TotalTime_TotalIllumDuration
+from timed_experiment import ExpControl, ExpmtSetup_embedded_TotalTime_TotalIllumDuration # ,ExpmtSetup_embedded, ExpmtSetup_embedded_TotalTime
 from UIs import ExpmtGraph, LiveGraph
 
 
