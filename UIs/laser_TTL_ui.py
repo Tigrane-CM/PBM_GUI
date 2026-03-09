@@ -40,11 +40,11 @@ class LaserTTLUI(QWidget):
         self.toggle.start_transition(value)
         if value:
             self.btn.setText('ON')
-            self.btn.setStyleSheet("color: red")
+            self.btn.setStyleSheet("color: red; font: 8pt")
 
         else:
             self.btn.setText('OFF')
-            self.btn.setStyleSheet("color: black")
+            self.btn.setStyleSheet("color: black; font: 8pt")
 
 
     def closeEvent(self):

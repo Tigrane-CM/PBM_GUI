@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ba49d1fc-d5ab-4b90-8a88-b9c4876db0ef" name="Changes" comment="rollback">
+    <list default="true" id="ba49d1fc-d5ab-4b90-8a88-b9c4876db0ef" name="Changes" comment="added a selection list for the laser source in the &quot;Compute&quot;/powerCalc window">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UIs/expmt_graph.py" beforeDir="false" afterPath="$PROJECT_DIR$/UIs/expmt_graph.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pbm_gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/pbm_gui.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIs/laser_TTL_ui.py" beforeDir="false" afterPath="$PROJECT_DIR$/UIs/laser_TTL_ui.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/power_calc.py" beforeDir="false" afterPath="$PROJECT_DIR$/power_calc.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/timed_experiment.py" beforeDir="false" afterPath="$PROJECT_DIR$/timed_experiment.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +103,15 @@
       <option name="project" value="LOCAL" />
       <updated>1772714774697</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="added a selection list for the laser source in the &quot;Compute&quot;/powerCalc window">
+      <option name="closed" value="true" />
+      <created>1773062660890</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1773062660890</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -123,26 +129,12 @@
     <MESSAGE value="corrected a bad behavior: you could change laser irradiance compute parameters and press enter, the window would close but the parameters would not be taken into account" />
     <MESSAGE value="adding irradiance_measurement to the git" />
     <MESSAGE value="rollback" />
-    <option name="LAST_COMMIT_MESSAGE" value="rollback" />
+    <MESSAGE value="added a selection list for the laser source in the &quot;Compute&quot;/powerCalc window" />
+    <option name="LAST_COMMIT_MESSAGE" value="added a selection list for the laser source in the &quot;Compute&quot;/powerCalc window" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/power_calc.py</url>
-          <line>73</line>
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/power_calc.py</url>
-          <line>76</line>
-          <option name="timeStamp" value="23" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/power_calc.py</url>
-          <line>69</line>
-          <option name="timeStamp" value="24" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/UIs/expmt_graph.py</url>
           <line>105</line>
@@ -152,21 +144,6 @@
           <url>file://$PROJECT_DIR$/timed_experiment.py</url>
           <line>212</line>
           <option name="timeStamp" value="26" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/power_calc.py</url>
-          <line>67</line>
-          <option name="timeStamp" value="31" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/power_calc.py</url>
-          <line>66</line>
-          <option name="timeStamp" value="32" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/power_calc.py</url>
-          <line>64</line>
-          <option name="timeStamp" value="33" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/timed_experiment.py</url>

@@ -50,7 +50,7 @@ class PowerCalc(QWidget):
         else:
             self.distance_read.var.setValue(0.)
 
-        self.laser_power = VarLine('Laser power', None, tracked=True, units={'W':1, 'x20 mW':1}, decimals=1, wide=True, unit_width=50, right_align=False)
+        self.laser_power = VarLine('Laser power', None, tracked=True, units={'W':1, 'x20 mW':1}, decimals=2, wide=True, unit_width=50, right_align=False)
         self.laser_power.var.setRange(0,5.1)
         if laser_power is not None:
             self.laser_power.var.setValue(laser_power)
@@ -82,13 +82,17 @@ class PowerCalc(QWidget):
         # print(new_laser_source)
         match new_laser_source:
             case "670 nm 5W (Grenoble)":
-                pass
+                self.distances = np.load(default_folder + '/670nm_5W_Gre_09mars_distances_lues.npy')  # grenoble 670
+                self.powers = np.load(default_folder + '/670nm_5W_Gre_09mars_puissances_laser.npy')  # grenoble 670
+                self.data = np.load(default_folder + '/670nm_5W_Gre_09mars_interpolees.npy').transpose()  # grenoble 670
+                self.laser_power.change_units("W")
+                self.laser_power.var.setDecimals(2)
             case "808 nm 5W (Grenoble)":
                 self.distances = np.load(default_folder + '/20octobre_distances_lues.npy')  # grenoble 808
                 self.powers = np.load(default_folder + '/20octobre_puissances_laser.npy')  # grenoble 808
                 self.data = np.load(default_folder + '/20octobre_interpolees.npy').transpose()  # grenoble 808
                 self.laser_power.change_units("W")
-                self.laser_power.var.setDecimals(1)
+                self.laser_power.var.setDecimals(2)
             case "670 nm 2W (Tours)":
                 pass
             case "808 nm 2W (Tours)":
