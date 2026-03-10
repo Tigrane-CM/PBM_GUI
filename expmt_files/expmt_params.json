@@ -1,9 +1,27 @@
 {
     "experiment config": {
-        "folderpath": "C:\\PBM\\Experiment_files",
-        "on duration (min)": 0.1,
-        "repetition time (min)": 0.1,
-        "num. illums": 3.0,
-        "Laser irradiance (INDICATIVE!, in mW/cm\u00b2)": 10.0
+        "laser source": "670 nm 5W (Grenoble)",
+        "laser power": 0.92,
+        "distance read": 6.5,
+        "Laser irradiance (mW/cm\u00b2)": 5.039984441107773,
+        "illum duration": {
+            "value": 1428.0,
+            "unit": "sec"
+        },
+        "num. illums": 1.0,
+        "total duration": {
+            "value": 24.5,
+            "unit": "min"
+        },
+        "on duration": {
+            "value": 23.8,
+            "unit": "min"
+        },
+        "repetition time": {
+            "value": 24.5,
+            "unit": "min"
+        },
+        "folderpath": "C:\\PBM\\experiment_files",
+        "filename": "C:\\PBM\\experiment_files/20260310_141537_expmt_params.json"
     }
 }

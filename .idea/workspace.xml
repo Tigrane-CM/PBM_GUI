@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ba49d1fc-d5ab-4b90-8a88-b9c4876db0ef" name="Changes" comment="added a selection list for the laser source in the &quot;Compute&quot;/powerCalc window">
+    <list default="true" id="ba49d1fc-d5ab-4b90-8a88-b9c4876db0ef" name="Changes" comment="minor style corrections, added the data for the 670nm 5W laser in Grenoble.">
+      <change afterPath="$PROJECT_DIR$/Laser_Irradiance_measurements/05decembre_distances_lues.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Laser_Irradiance_measurements/05decembre_interpolees.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Laser_Irradiance_measurements/05decembre_puissances_laser_x20mW.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Laser_Irradiance_measurements/13octobre_distances_lues.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Laser_Irradiance_measurements/13octobre_interpolees.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Laser_Irradiance_measurements/13octobre_puissances_laser_x20mW.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Laser_Irradiance_measurements/20octobre_distances_lues.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Laser_Irradiance_measurements/20octobre_interpolees.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Laser_Irradiance_measurements/20octobre_puissances_laser.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Laser_Irradiance_measurements/670nm_5W_Gre_09mars_distances_lues.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Laser_Irradiance_measurements/670nm_5W_Gre_09mars_interpolees.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Laser_Irradiance_measurements/670nm_5W_Gre_09mars_puissances_laser.npy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UIs/laser_TTL_ui.py" beforeDir="false" afterPath="$PROJECT_DIR$/UIs/laser_TTL_ui.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/power_calc.py" beforeDir="false" afterPath="$PROJECT_DIR$/power_calc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/expmt_files/expmt_params.json" beforeDir="false" afterPath="$PROJECT_DIR$/expmt_files/expmt_params.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/timed_experiment.py" beforeDir="false" afterPath="$PROJECT_DIR$/timed_experiment.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,6 +26,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Tigrane-CM&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Tigrane-CM/PBM_GUI.git&quot;,
+    &quot;accountId&quot;: &quot;51729705-5516-4cc5-bf77-2d29132bf810&quot;
+  }
+}</component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 4
@@ -23,17 +47,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.pbm_gui.executor": "Debug",
-    "Python.power_calc.executor": "Debug",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "settings.editor.selected.configurable": "reference.idesettings.debugger.python"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.pbm_gui.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.power_calc.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.idesettings.debugger.python&quot;
   }
-}]]></component>
+}</component>
   <component name="PyDebuggerOptionsProvider">
     <option name="mySupportQtDebugging" value="false" />
     <option name="myPyQtBackend" value="pyqt5" />
@@ -111,7 +135,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773062660890</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="minor style corrections, added the data for the 670nm 5W laser in Grenoble.">
+      <option name="closed" value="true" />
+      <created>1773072648103</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1773072648103</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -119,7 +151,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -130,28 +174,10 @@
     <MESSAGE value="adding irradiance_measurement to the git" />
     <MESSAGE value="rollback" />
     <MESSAGE value="added a selection list for the laser source in the &quot;Compute&quot;/powerCalc window" />
-    <option name="LAST_COMMIT_MESSAGE" value="added a selection list for the laser source in the &quot;Compute&quot;/powerCalc window" />
+    <MESSAGE value="minor style corrections, added the data for the 670nm 5W laser in Grenoble." />
+    <option name="LAST_COMMIT_MESSAGE" value="minor style corrections, added the data for the 670nm 5W laser in Grenoble." />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/UIs/expmt_graph.py</url>
-          <line>105</line>
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/timed_experiment.py</url>
-          <line>212</line>
-          <option name="timeStamp" value="26" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/timed_experiment.py</url>
-          <line>965</line>
-          <option name="timeStamp" value="34" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
         <watch expression="self.laser_list.currentText()" language="Python" />
