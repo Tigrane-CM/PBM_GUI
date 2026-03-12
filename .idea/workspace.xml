@@ -1,22 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ba49d1fc-d5ab-4b90-8a88-b9c4876db0ef" name="Changes" comment="minor style corrections, added the data for the 670nm 5W laser in Grenoble.">
-      <change afterPath="$PROJECT_DIR$/Laser_Irradiance_measurements/05decembre_distances_lues.npy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Laser_Irradiance_measurements/05decembre_interpolees.npy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Laser_Irradiance_measurements/05decembre_puissances_laser_x20mW.npy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Laser_Irradiance_measurements/13octobre_distances_lues.npy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Laser_Irradiance_measurements/13octobre_interpolees.npy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Laser_Irradiance_measurements/13octobre_puissances_laser_x20mW.npy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Laser_Irradiance_measurements/20octobre_distances_lues.npy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Laser_Irradiance_measurements/20octobre_interpolees.npy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Laser_Irradiance_measurements/20octobre_puissances_laser.npy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Laser_Irradiance_measurements/670nm_5W_Gre_09mars_distances_lues.npy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Laser_Irradiance_measurements/670nm_5W_Gre_09mars_interpolees.npy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Laser_Irradiance_measurements/670nm_5W_Gre_09mars_puissances_laser.npy" afterDir="false" />
+    <list default="true" id="ba49d1fc-d5ab-4b90-8a88-b9c4876db0ef" name="Changes" comment="minor cleanup + added the calibration measurements to the git (again)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expmt_files/expmt_params.json" beforeDir="false" afterPath="$PROJECT_DIR$/expmt_files/expmt_params.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/timed_experiment.py" beforeDir="false" afterPath="$PROJECT_DIR$/timed_experiment.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/power_calc.py" beforeDir="false" afterPath="$PROJECT_DIR$/power_calc.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +19,9 @@
     &quot;assignee&quot;: &quot;Tigrane-CM&quot;
   }
 }</component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="51729705-5516-4cc5-bf77-2d29132bf810" />
+  </component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/Tigrane-CM/PBM_GUI.git&quot;,
@@ -55,7 +45,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.idesettings.debugger.python&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
   }
 }</component>
   <component name="PyDebuggerOptionsProvider">
@@ -143,7 +133,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773072648103</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="minor cleanup + added the calibration measurements to the git (again)">
+      <option name="closed" value="true" />
+      <created>1773158219507</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1773158219507</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -175,7 +173,8 @@
     <MESSAGE value="rollback" />
     <MESSAGE value="added a selection list for the laser source in the &quot;Compute&quot;/powerCalc window" />
     <MESSAGE value="minor style corrections, added the data for the 670nm 5W laser in Grenoble." />
-    <option name="LAST_COMMIT_MESSAGE" value="minor style corrections, added the data for the 670nm 5W laser in Grenoble." />
+    <MESSAGE value="minor cleanup + added the calibration measurements to the git (again)" />
+    <option name="LAST_COMMIT_MESSAGE" value="minor cleanup + added the calibration measurements to the git (again)" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
