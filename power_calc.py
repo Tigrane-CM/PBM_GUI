@@ -50,14 +50,14 @@ class PowerCalc(QWidget):
         else:
             self.distance_read.var.setValue(0.)
 
-        self.laser_power = VarLine('Laser power', None, tracked=True, units={'W':1, 'x20 mW':1}, decimals=2, wide=True, unit_width=50, right_align=False)
+        self.laser_power = VarLine('Laser power', None, tracked=False, units={'W':1, 'x20 mW':1}, decimals=2, wide=True, unit_width=50, right_align=False)
         self.laser_power.var.setRange(0,5.1)
         if laser_power is not None:
             self.laser_power.var.setValue(laser_power)
         else:
             self.laser_power.var.setValue(20)
 
-        self.irradiance = VarLine('Irradiance', None, tracked=True, units={'mW/cm²':1}, decimals=1, inform_only=True, wide=True, unit_width=50, right_align=False)
+        self.irradiance = VarLine('Irradiance', None, tracked=False, units={'mW/cm²':1}, decimals=1, inform_only=True, wide=True, unit_width=50, right_align=False)
         self.distance_read.var.valueChanged.connect(self.update)
         self.laser_power.var.valueChanged.connect(self.update)
 
@@ -94,7 +94,11 @@ class PowerCalc(QWidget):
                 self.laser_power.change_units("W")
                 self.laser_power.var.setDecimals(2)
             case "670 nm 2W (Tours)":
-                pass
+                self.distances = np.load(default_folder + '/670nm_2W_Tours_12mars_distances_lues.npy')  # tours 670
+                self.powers = np.load(default_folder + '/670nm_2W_Tours_12mars_puissances_laser.npy')  # tours 670
+                self.data = np.load(default_folder + '/670nm_2W_Tours_12mars_interpolees.npy').transpose()  # tours 670
+                self.laser_power.change_units("W")
+                self.laser_power.var.setDecimals(2)
             case "808 nm 2W (Tours)":
                 self.distances = np.load(default_folder + '/05decembre_distances_lues.npy') # tours 808
                 self.powers = np.load(default_folder + '/05decembre_puissances_laser_x20mW.npy') # tours 808
