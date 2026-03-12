@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ba49d1fc-d5ab-4b90-8a88-b9c4876db0ef" name="Changes" comment="minor cleanup + added the calibration measurements to the git (again)">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="ba49d1fc-d5ab-4b90-8a88-b9c4876db0ef" name="Changes" comment="readdress where the laser irradiance measurements are">
       <change beforePath="$PROJECT_DIR$/power_calc.py" beforeDir="false" afterPath="$PROJECT_DIR$/power_calc.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -141,7 +140,31 @@
       <option name="project" value="LOCAL" />
       <updated>1773158219507</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="readdress where the laser irradiance measurements are">
+      <option name="closed" value="true" />
+      <created>1773324497761</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1773324497761</updated>
+    </task>
+    <task id="LOCAL-00008" summary="readdress where the laser irradiance measurements are">
+      <option name="closed" value="true" />
+      <created>1773324718848</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1773324718848</updated>
+    </task>
+    <task id="LOCAL-00009" summary="readdress where the laser irradiance measurements are">
+      <option name="closed" value="true" />
+      <created>1773324766428</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1773324766428</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -174,7 +197,8 @@
     <MESSAGE value="added a selection list for the laser source in the &quot;Compute&quot;/powerCalc window" />
     <MESSAGE value="minor style corrections, added the data for the 670nm 5W laser in Grenoble." />
     <MESSAGE value="minor cleanup + added the calibration measurements to the git (again)" />
-    <option name="LAST_COMMIT_MESSAGE" value="minor cleanup + added the calibration measurements to the git (again)" />
+    <MESSAGE value="readdress where the laser irradiance measurements are" />
+    <option name="LAST_COMMIT_MESSAGE" value="readdress where the laser irradiance measurements are" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

@@ -12,7 +12,7 @@ if platform == 'win32':
     # default_folder = "/Laser_irradiance_measurements"
 else:
     # default_folder = r"/home/lightomics/pbm/experiment_files/laser_irradiance_meas" # tours
-    default_folder = r"/home/pbm-precision/pbm/PBM_GUI/Laser_irradiance_measurements" # grenoble
+    default_folder = r"/home/pbm-precision/pbm/PBM_GUI/Laser_Irradiance_measurements" # grenoble
 
 def find_nearest_index(array, value):
     if value < array.min() or value > array.max():
