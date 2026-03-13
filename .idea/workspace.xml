@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ba49d1fc-d5ab-4b90-8a88-b9c4876db0ef" name="Changes" comment="changed the laser source selection to a config file instead or hard code, and retructured their directory">
+    <list default="true" id="ba49d1fc-d5ab-4b90-8a88-b9c4876db0ef" name="Changes" comment="readded the calibration files">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laser_src_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/laser_src_config.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,7 +189,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773393922013</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="readded the calibration files">
+      <option name="closed" value="true" />
+      <created>1773397563906</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1773397563906</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -225,7 +234,8 @@
     <MESSAGE value="readdress again (majuscsule) where the laser irradiance measurements are" />
     <MESSAGE value="added calibration of 670nm Tours laser. Measurements to confirm tomorrow" />
     <MESSAGE value="changed the laser source selection to a config file instead or hard code, and retructured their directory" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed the laser source selection to a config file instead or hard code, and retructured their directory" />
+    <MESSAGE value="readded the calibration files" />
+    <option name="LAST_COMMIT_MESSAGE" value="readded the calibration files" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

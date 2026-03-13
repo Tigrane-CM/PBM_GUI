@@ -22,7 +22,7 @@
       "unit": "W"},
     "calibration": {
       "root dir": "./Laser_Irradiance_measurements/670_2W_Tours",
-      "date": "12mars"
+      "date": "13mars"
     }
   },
   "laser_808_5W":
@@ -47,8 +47,8 @@
       "value": 105,
       "unit": "x20 mW"},
     "calibration": {
-      "root dir": "./Laser_Irradiance_measurements/670_5W_Grenoble",
-      "date": "05decembre"
+      "root dir": "./Laser_Irradiance_measurements/808_2W_Tours",
+      "date": "13mars"
     }
   }
 }
