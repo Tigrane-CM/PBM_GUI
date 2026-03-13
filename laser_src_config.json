@@ -1,0 +1,54 @@
+{
+  "laser_670_5W":
+  {
+    "name": "670 nm 5W (Grenoble)",
+    "installed in": "Grenoble",
+    "wavelength": 670,
+    "max power": {
+      "value": 5.14,
+      "unit": "W"},
+    "calibration": {
+      "root dir": "./Laser_Irradiance_measurements/670_5W_Grenoble",
+      "date": "09mars"
+    }
+  },
+  "laser_670_2W":
+  {
+    "name": "670 nm 2W (Tours)",
+    "installed in": "Tours",
+    "wavelength": 670,
+    "max power": {
+      "value": 2.1,
+      "unit": "W"},
+    "calibration": {
+      "root dir": "./Laser_Irradiance_measurements/670_2W_Tours",
+      "date": "12mars"
+    }
+  },
+  "laser_808_5W":
+  {
+    "name": "808 nm 5W (Grenoble)",
+    "installed in": "Grenoble",
+    "wavelength": 808,
+    "max power": {
+      "value": 5.1,
+      "unit": "W"},
+    "calibration": {
+      "root dir": "./Laser_Irradiance_measurements/808_5W_Grenoble",
+      "date": "20octobre"
+    }
+  },
+  "laser_808_2W":
+  {
+    "name": "808 nm 2W (Tours)",
+    "installed in": "Tours",
+    "wavelength": 808,
+    "max power": {
+      "value": 105,
+      "unit": "x20 mW"},
+    "calibration": {
+      "root dir": "./Laser_Irradiance_measurements/670_5W_Grenoble",
+      "date": "05decembre"
+    }
+  }
+}

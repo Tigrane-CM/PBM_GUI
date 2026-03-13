@@ -1,8 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ba49d1fc-d5ab-4b90-8a88-b9c4876db0ef" name="Changes" comment="readdress again (majuscsule) where the laser irradiance measurements are">
+    <list default="true" id="ba49d1fc-d5ab-4b90-8a88-b9c4876db0ef" name="Changes" comment="added calibration of 670nm Tours laser. Measurements to confirm tomorrow">
+      <change afterPath="$PROJECT_DIR$/laser_src_config.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laser_Irradiance_measurements/05decembre_distances_lues.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laser_Irradiance_measurements/05decembre_interpolees.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laser_Irradiance_measurements/05decembre_puissances_laser_x20mW.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laser_Irradiance_measurements/13octobre_distances_lues.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laser_Irradiance_measurements/13octobre_interpolees.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laser_Irradiance_measurements/13octobre_puissances_laser_x20mW.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laser_Irradiance_measurements/20octobre_distances_lues.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laser_Irradiance_measurements/20octobre_interpolees.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laser_Irradiance_measurements/20octobre_puissances_laser.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laser_Irradiance_measurements/670nm_2W_Tours_12mars_distances_lues.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laser_Irradiance_measurements/670nm_2W_Tours_12mars_interpolees.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laser_Irradiance_measurements/670nm_2W_Tours_12mars_puissances_laser.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laser_Irradiance_measurements/670nm_5W_Gre_09mars_distances_lues.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laser_Irradiance_measurements/670nm_5W_Gre_09mars_interpolees.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Laser_Irradiance_measurements/670nm_5W_Gre_09mars_puissances_laser.npy" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/power_calc.py" beforeDir="false" afterPath="$PROJECT_DIR$/power_calc.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -173,7 +189,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773324818274</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="added calibration of 670nm Tours laser. Measurements to confirm tomorrow">
+      <option name="closed" value="true" />
+      <created>1773329441893</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1773329441893</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -208,9 +232,19 @@
     <MESSAGE value="minor cleanup + added the calibration measurements to the git (again)" />
     <MESSAGE value="readdress where the laser irradiance measurements are" />
     <MESSAGE value="readdress again (majuscsule) where the laser irradiance measurements are" />
-    <option name="LAST_COMMIT_MESSAGE" value="readdress again (majuscsule) where the laser irradiance measurements are" />
+    <MESSAGE value="added calibration of 670nm Tours laser. Measurements to confirm tomorrow" />
+    <option name="LAST_COMMIT_MESSAGE" value="added calibration of 670nm Tours laser. Measurements to confirm tomorrow" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/power_calc.py</url>
+          <line>133</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
         <watch expression="self.laser_list.currentText()" language="Python" />
